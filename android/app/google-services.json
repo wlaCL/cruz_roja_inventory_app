@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "944264539543",
+    "project_id": "cruz-roja-inventory-system",
+    "storage_bucket": "cruz-roja-inventory-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944264539543:android:2fc44f47c31b54e0cf68d2",
+        "android_client_info": {
+          "package_name": "com.wlcevas.app_sistema_invetnario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944264539543-o9ofto46krc16c6tmais1oiuco7c7v56.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wlcevas.app_sistema_invetnario",
+            "certificate_hash": "b4f17d16fa6c66fa130fe2eefedb985591b79f49"
+          }
+        },
+        {
+          "client_id": "944264539543-q0gv65tt8i3p4fmm0oevg5o04af82mbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-uTdQe8IWvpSISLUrcVFHOJ1dNNSzgsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944264539543-q0gv65tt8i3p4fmm0oevg5o04af82mbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

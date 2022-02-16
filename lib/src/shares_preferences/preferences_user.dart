@@ -46,4 +46,12 @@ class PreferencesUser {
   set color(int color) {
     this._prefs.setInt('color', color);
   }
+
+  String get dispositivo {
+    return _prefs.getString('dispositivo') ?? '';
+  }
+
+  set dispositivo(String dispositivo) {
+    _prefs.setString('dispositivo', dispositivo);
+  }
 }

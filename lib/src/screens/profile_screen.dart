@@ -75,16 +75,15 @@ class _DataProfileScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: SwitchListTile.adaptive(
-                activeColor: Colors.indigo,
-                value: appTheme.darkTheme,
-                onChanged: (value) {
-                  appTheme.darkTheme = true;
-                },
-                title: Text(
-                  "Modo oscuro",
-                  style: TextStyle(color: Colors.black),
-                ),
+              child: ListTile(
+                title: Text('Dark Mode',
+                    style: TextStyle(
+                      color: Colors.black,
+                    )),
+                trailing: Switch.adaptive(
+                    activeColor: Colors.indigo,
+                    value: appTheme.darkTheme,
+                    onChanged: (value) => appTheme.darkTheme = value),
               ),
             ),
             SizedBox(
@@ -92,14 +91,15 @@ class _DataProfileScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: SwitchListTile.adaptive(
-                activeColor: Colors.indigo,
-                value: appTheme.customTheme,
-                onChanged: (value) {
-                  appTheme.customTheme = value;
-                },
-                title:
-                    Text("Modo claro", style: TextStyle(color: Colors.black)),
+              child: ListTile(
+                title: Text('Modo Claro',
+                    style: TextStyle(
+                      color: Colors.black,
+                    )),
+                trailing: Switch.adaptive(
+                    activeColor: Colors.indigo,
+                    value: appTheme.customTheme,
+                    onChanged: (value) => appTheme.customTheme = value),
               ),
             ),
             SizedBox(height: 20.0),

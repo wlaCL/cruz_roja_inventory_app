@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ReportService extends ChangeNotifier {
-  final _baseUrl = "192.168.1.5:3000";
+  final _baseUrl = "192.168.1.9:3000";
   final storage = const FlutterSecureStorage();
   String? token;
   String? reporte;

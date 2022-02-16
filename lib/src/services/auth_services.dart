@@ -7,7 +7,7 @@ import 'dart:convert';
 class AuthService extends ChangeNotifier {
   //ServerConect server = ServerConect();
   //late final String _baseUrl = server.ip;
-  final _baseUrl = '192.168.1.5:3000';
+  final _baseUrl = '192.168.1.9:3000';
   String? name;
   String? lastName;
   final storage = FlutterSecureStorage();
@@ -17,6 +17,7 @@ class AuthService extends ChangeNotifier {
     final Map<String, dynamic> authData = {
       'cedula': cedula,
       'password': password,
+      'dispositivo': prefs.dispositivo
     };
     final url = Uri.http(_baseUrl, '/api/auth/app');
     try {

@@ -28,7 +28,7 @@ class ProductosSearchDelegate extends SearchDelegate {
           close(context, null);
           final inventarioService =
               Provider.of<Inventario>(context, listen: false);
-          inventarioService.productos.clear();
+          //inventarioService.productos.clear();
         },
         icon: Icon(Icons.arrow_back));
   }

@@ -260,6 +260,7 @@ class _FormRegisterInventory extends StatelessWidget {
                 ),
                 (inventarioService[0].tipo == "Insumo Medico")
                     ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding:
@@ -335,15 +336,6 @@ class _FormRegisterInventory extends StatelessWidget {
 
               if (inventario.code != 200) {
                 return;
-              } else {
-                cantController.clear();
-                consumoContrller.clear();
-                pushNewScreen(
-                  context,
-                  screen: ScanScanner(),
-                  withNavBar: true, // OPTIONAL VALUE. True by default.
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                );
               }
             },
             child: Padding(

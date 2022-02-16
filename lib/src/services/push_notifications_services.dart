@@ -2,19 +2,21 @@
 
 import 'dart:async';
 
+import 'package:app_sistema_invetnario/src/shares_preferences/preferences_user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class PushNotificationService {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
-  static String? token;
-  static StreamController<Object> _messageStreamController =
+  static String? dispositivo;
+  static StreamController<String> _messageStreamController =
       StreamController.broadcast();
-  static Stream<Object> get messageStream => _messageStreamController.stream;
+  static Stream<String> get messageStream => _messageStreamController.stream;
+  static final prefs = PreferencesUser();
 
   static Future _backgroundHandler(RemoteMessage message) async {
     //print('onBackground Handler ${message.messageId}');
-    _messageStreamController.add(message.data);
+    _messageStreamController.add(message.notification?.body ?? 'No body');
     //_messageStreamController.add(message.data['paramedico'] ?? 'No hay datos');
     //_messageStreamController.add(message.data['cedula'] ?? 'No hay datos');
     //_messageStreamController.add(message.data['ambulancia'] ?? 'No hay datos');
@@ -22,7 +24,8 @@ class PushNotificationService {
 
   static Future _onMessageHandler(RemoteMessage message) async {
     //print('onMessage Handler ${message.messageId}');
-    _messageStreamController.add(message.data);
+    //_messageStreamController.add(message.data);
+    _messageStreamController.add(message.notification?.body ?? 'No body');
     //_messageStreamController.add(message.notification?.title ?? 'No title');
     //_messageStreamController.add(message.data['fecha'] ?? 'No hay datos');
     //_messageStreamController.add(message.data['paramedico'] ?? 'No hay datos');
@@ -32,7 +35,8 @@ class PushNotificationService {
 
   static Future _onMessageOpenAdd(RemoteMessage message) async {
     //print('onMessage Handler ${message.messageId}');
-    _messageStreamController.add(message.data);
+    // _messageStreamController.add(message.data);
+    _messageStreamController.add(message.notification?.body ?? 'No body');
     //_messageStreamController.add(message.notification?.title ?? 'No title');
     //_messageStreamController.add(message.data['fecha'] ?? 'No hay datos');
     //_messageStreamController.add(message.data['paramedico'] ?? 'No hay datos');
@@ -43,8 +47,8 @@ class PushNotificationService {
   static Future initalizeApp() async {
     //push notification
     await Firebase.initializeApp();
-    token = await FirebaseMessaging.instance.getToken();
-    print('Token: $token');
+    dispositivo = await FirebaseMessaging.instance.getToken();
+    prefs.dispositivo = dispositivo!;
 
     //handlersnull
     FirebaseMessaging.onBackgroundMessage(_backgroundHandler);

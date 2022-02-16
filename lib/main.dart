@@ -29,12 +29,11 @@ class _AppStateState extends State<AppState> {
   @override
   void initState() {
     super.initState();
-    final GlobalKey<NavigatorState> navigatorKey =
-        new GlobalKey<NavigatorState>();
 
     PushNotificationService.messageStream.listen((message) {
       print('MyApp $message');
-      navigatorKey.currentState?.pushNamed('message', arguments: message);
+      //navigatorKey.currentState?.pushNamed('message', arguments: message);
+      NotificationService.showSnackBar(message);
     });
   }
 

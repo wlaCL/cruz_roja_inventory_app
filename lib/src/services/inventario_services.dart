@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 class Inventario extends ChangeNotifier {
-  final _baseUrl = '192.168.1.5:3000';
+  final _baseUrl = '192.168.1.9:3000';
   final storage = FlutterSecureStorage();
   String? token;
   List<Products> productos = [];
@@ -108,18 +108,16 @@ class Inventario extends ChangeNotifier {
       final searchResponse = InventarioResponse.fromJson(response.body);
 
       productos = searchResponse.data;
+      print("*****************************");
+      print(productos);
       if (response.statusCode == 422) {
         message = responseDecode["errors"][0]["msg"];
       }
       if (response.statusCode == 200) {
-        ok:
-        true;
+        ok = true;
       } else {
-        ok:
-        false;
+        ok = false;
       }
-
-      print(message);
     } catch (error) {
       print(error);
     }

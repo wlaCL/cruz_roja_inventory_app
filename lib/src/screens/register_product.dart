@@ -254,7 +254,6 @@ class RegisterProduct extends StatelessWidget {
                 }
 
                 //TODO CLIMPIAR TODO
-                Navigator.pop(context);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(

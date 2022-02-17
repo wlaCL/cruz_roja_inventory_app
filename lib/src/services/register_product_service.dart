@@ -81,6 +81,8 @@ class RegisterProductServices extends ChangeNotifier {
       }
       if (resp.statusCode == 200) {
         code = resp.statusCode;
+      } else {
+        code = 0;
       }
 
       message = decodeResp["msg"];

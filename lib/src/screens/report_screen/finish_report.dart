@@ -213,14 +213,13 @@ class FinishReport extends StatelessWidget {
                     formReportFish.conductor,
                     formReportFish.base,
                     formReportFish.novedades);
-
-                NotificationService.showSnackBar(respuesta);
-
                 if (reporte.code == 200) {
                   reporte.isFinish = true;
+                } else {
+                  NotificationService.showSnackBar(respuesta);
                 }
 
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(

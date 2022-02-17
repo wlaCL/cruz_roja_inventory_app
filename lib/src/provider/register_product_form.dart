@@ -7,7 +7,7 @@ class RegisterProductForm extends ChangeNotifier {
   String _tipo = "";
   String _nombre = "";
   String _categoriaNombre = "";
-  int _cantidad = 0;
+  String _cantidad = '0';
 
   String get ambulancia => this._ambulancia;
   set ambulancia(String ambulancia) {
@@ -37,10 +37,10 @@ class RegisterProductForm extends ChangeNotifier {
     this._nombre = nombre;
   }
 
-  int get cantidad => this._cantidad;
-  set cantidad(int valor) {
-    this.cantidad = valor;
-    notifyListeners();
+  String get cantidad => this._cantidad;
+
+  set cantidad(String cantidad) {
+    this._cantidad = cantidad;
   }
 
   bool isValidForm() {

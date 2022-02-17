@@ -13,3 +13,6 @@ export 'package:app_sistema_invetnario/src/screens/report_screen/register_invent
 export 'package:app_sistema_invetnario/src/screens/home_screen.dart';
 export 'package:app_sistema_invetnario/src/screens/scanner_screen.dart';
 export 'package:app_sistema_invetnario/src/screens/message.screen.dart';
+export 'package:app_sistema_invetnario/src/screens/search_date_report.dart';
+export 'package:app_sistema_invetnario/src/screens/search_date_report.dart';
+export 'package:app_sistema_invetnario/src/screens/response_search_pdf.dart';

@@ -31,8 +31,6 @@ class _AppStateState extends State<AppState> {
     super.initState();
 
     PushNotificationService.messageStream.listen((message) {
-      print('MyApp $message');
-      //navigatorKey.currentState?.pushNamed('message', arguments: message);
       NotificationService.showSnackBar(message);
     });
   }
@@ -53,7 +51,8 @@ class _AppStateState extends State<AppState> {
         ChangeNotifierProvider(create: (_) => Inventario()),
         ChangeNotifierProvider(create: (_) => InventoryForm()),
         ChangeNotifierProvider(create: (_) => FinishReportProvider()),
-        ChangeNotifierProvider(create: (_) => InventoryEsencialsForm())
+        ChangeNotifierProvider(create: (_) => InventoryEsencialsForm()),
+        ChangeNotifierProvider(create: (_) => FormSearchPdf())
       ],
       child: MyApp(),
     );

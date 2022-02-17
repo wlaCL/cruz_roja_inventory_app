@@ -55,6 +55,7 @@ class HomeScreen extends StatelessWidget {
       ProfileScreen(),
       DataRegisterProduct(),
       ReportScreen(),
+      LoadDataPDF()
     ];
   }
 
@@ -78,12 +79,12 @@ class HomeScreen extends StatelessWidget {
         activeColorPrimary: Colors.indigo,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      /*PersistentBottomNavBarItem(
+      PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.search),
-        title: ("Notificaciones"),
+        title: ("Búsqueda"),
         activeColorPrimary: Colors.indigo,
         inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),*/
+      ),
     ];
   }
 }

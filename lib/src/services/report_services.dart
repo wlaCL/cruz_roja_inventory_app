@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:app_sistema_invetnario/src/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -12,6 +13,7 @@ class ReportService extends ChangeNotifier {
   int? code;
   bool isReport = false;
   bool _isFinish = false;
+  List<Reporte>? reportes;
 
   set isFinish(bool value) {
     _isFinish = value;
@@ -112,11 +114,50 @@ class ReportService extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         code = 200;
+      } else {
+        code = 0;
       }
       message = respuesta["msg"];
     } catch (error) {
       message = "Servicio no disponible por el momento";
     }
     return message;
+  }
+
+  Future<int> getDataReports(String placa, String fecha) async {
+    print(' $placa  $fecha');
+    final queryParams = {"placa": placa, 'fecha': fecha};
+    final url =
+        Uri.http(_baseUrl, '/api/reporte/search/data/report', queryParams);
+    try {
+      token = await storage.read(key: 'id_token');
+      final response = await http.get(url, headers: {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "x-token": '$token'
+      });
+      print(response.body);
+      if (response.statusCode == 200) {
+        code = 200;
+        final pdfData = ReporteSearchResponse.fromJson(response.body);
+        reportes = pdfData.reportes;
+      } else {
+        code = 0;
+      }
+    } catch (error) {
+      code = 0;
+    }
+    return code!;
+  }
+
+  Future<int> getReport(String id) async {
+    try {
+      token = await storage.read(key: 'id_token');
+      final url = Uri.http(_baseUrl, '/api/reporte/search/pdf/$id');
+      await http.get(url, headers: {'x-token': '$token'});
+    } catch (error) {
+      print(error);
+    }
+    return 0;
   }
 }

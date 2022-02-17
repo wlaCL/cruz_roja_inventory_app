@@ -6,7 +6,6 @@ import 'package:app_sistema_invetnario/src/models/models.dart';
 import 'package:app_sistema_invetnario/src/provider/provider.dart';
 import 'package:app_sistema_invetnario/src/services/notification_service.dart';
 import 'package:app_sistema_invetnario/src/services/register_product_service.dart';
-import 'package:app_sistema_invetnario/src/utils/count_controller.dart';
 import 'package:app_sistema_invetnario/src/widgets/widgets.dart';
 
 class DataRegisterProduct extends StatelessWidget {
@@ -29,8 +28,6 @@ class RegisterProduct extends StatelessWidget {
     const edgeInsets = const EdgeInsets.symmetric(horizontal: 20.0);
     registerForm.categoria = registerProductServices.categoryID;
     registerForm.categoriaNombre = registerProductServices.categoryName;
-    final TextEditingController controlloler = TextEditingController();
-    CountService _myService = CountService();
     return Scaffold(
       appBar: AppBar(
         title: Text("Nuevo Producto"),
@@ -141,28 +138,28 @@ class RegisterProduct extends StatelessWidget {
                       style: textStyle,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       decoration: _buildDecorationInput(),
                       child: TextFormField(
                         initialValue: (registerForm.categoriaNombre == "Varios")
                             ? "Varios"
                             : "No hay categoría registrada",
                         enabled: false,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         keyboardType: TextInputType.text,
                         decoration: InputDecorationForm.formInputDecoration(
                             labelText: ""),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
                   Padding(
@@ -172,18 +169,18 @@ class RegisterProduct extends StatelessWidget {
                       style: textStyle,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       decoration: _buildDecorationInput(),
                       child: TextFormField(
                         autofocus: false,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         keyboardType: TextInputType.text,
                         decoration: InputDecorationForm.formInputDecoration(
                           labelText: "",
@@ -193,17 +190,14 @@ class RegisterProduct extends StatelessWidget {
                           if (value!.isEmpty) {
                             return 'El nombre es obligatorio';
                           }
-                          final pattern = r'(^[a-zA-Z ]*$)';
-                          RegExp regExp = new RegExp(pattern);
-
-                          return regExp.hasMatch(value ?? '')
-                              ? null
-                              : 'El valor ingresado no luce como un nombre';
+                          if (value.length < 3) {
+                            return 'El nombre de contener más de tres caracteres';
+                          }
                         },
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
                   Padding(
@@ -213,14 +207,38 @@ class RegisterProduct extends StatelessWidget {
                       style: textStyle,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
-                  IconsAdd(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(left: 10.0),
+                      decoration: _buildDecorationInput(),
+                      child: TextFormField(
+                        autofocus: false,
+                        style: const TextStyle(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecorationForm.formInputDecoration(
+                          labelText: "",
+                        ),
+                        onChanged: (value) => registerForm.cantidad = value,
+                        validator: (dynamic value) {
+                          if (value!.isEmpty) {
+                            return 'La cantidad es obligatoria';
+                          }
+                          if (int.tryParse(value) == null) {
+                            return 'La cantidad debe ser un número entero';
+                          }
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             MaterialButton(
@@ -242,18 +260,18 @@ class RegisterProduct extends StatelessWidget {
                 }
                 String respuesta = await register.createProduct(
                     registerProductServices.categoryID,
-                    registerForm.nombre,
+                    registerForm.nombre.toUpperCase(),
                     registerForm.ambulancia,
-                    _myService.valor.toString(),
+                    //_myService.valor.toString(),
+                    registerForm
+                        .cantidad, // aqui se debe enviar el valor de cantidad
                     registerForm.tipo);
                 NotificationService.showSnackBar(respuesta);
-                await Future.delayed(Duration(milliseconds: 500));
-                if (register.code == 200) {
-                  _myService.valor = 1;
-                  controlloler.clear();
-                }
+                // await Future.delayed(Duration(milliseconds: 500));
 
-                //TODO CLIMPIAR TODO
+                if (register.code == 200) {
+                  registerForm.formKey.currentState!.reset();
+                }
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -261,12 +279,12 @@ class RegisterProduct extends StatelessWidget {
                   vertical: 20.0,
                 ),
                 child: Container(
-                  child: Text("Guardar",
+                  child: const Text("Guardar",
                       style: TextStyle(fontSize: 16.0, color: Colors.white)),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
           ],

@@ -199,7 +199,6 @@ class _FormRegisterInventory extends StatelessWidget {
                     decoration: _buildDecorationInput(),
                     child: TextFormField(
                       autofocus: false,
-                      controller: cantController,
                       style: TextStyle(color: Colors.black),
                       keyboardType: TextInputType.text,
                       decoration: InputDecorationForm.formInputDecoration(
@@ -227,6 +226,7 @@ class _FormRegisterInventory extends StatelessWidget {
                 ),
                 (product.tipo == "Insumo Medico")
                     ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding:
@@ -247,7 +247,6 @@ class _FormRegisterInventory extends StatelessWidget {
                               decoration: _buildDecorationInput(),
                               child: TextFormField(
                                 autofocus: false,
-                                controller: consumoContrller,
                                 style: TextStyle(color: Colors.black),
                                 keyboardType: TextInputType.text,
                                 decoration:
@@ -298,11 +297,9 @@ class _FormRegisterInventory extends StatelessWidget {
               NotificationService.showSnackBar(message);
 
               if (inventario.code != 200) {
-                //await Future.delayed(Duration(milliseconds: 20));
                 return;
               } else {
-                cantController.clear();
-                consumoContrller.clear();
+                inventoryForm.formKey.currentState!.reset();
               }
             },
             child: Padding(
@@ -317,29 +314,7 @@ class _FormRegisterInventory extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20.0,
-          ),
-          MaterialButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-            color: Colors.red.withOpacity(0.8),
-            onPressed: () async {
-              FocusScope.of(context).unfocus();
-              Navigator.pop(context);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 80.0,
-                vertical: 20.0,
-              ),
-              child: Container(
-                child: Text("Regresar",
-                    style: TextStyle(fontSize: 16.0, color: Colors.white)),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
+            height: 40.0,
           ),
         ],
       ),
@@ -350,62 +325,6 @@ class _FormRegisterInventory extends StatelessWidget {
     return BoxDecoration(
       color: Colors.black.withOpacity(0.10),
       borderRadius: BorderRadius.circular(10.0),
-    );
-  }
-}
-
-class IconsAdd extends StatefulWidget {
-  @override
-  State<IconsAdd> createState() => _IconsAddState();
-}
-
-class _IconsAddState extends State<IconsAdd> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 40,
-            child: Form(
-              child: TextFormField(
-                enabled: false,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "$valor",
-                    hintStyle: TextStyle(fontSize: 30.0)),
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              //iconSize: 50.0,
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      valor++;
-                    });
-                  },
-                  icon: Icon(Icons.add_circle),
-                  iconSize: 50.0),
-              SizedBox(width: 70),
-              IconButton(
-                  onPressed: () {
-                    if (valor == 0) {
-                      return;
-                    }
-                    valor--;
-                    setState(() {});
-                  },
-                  icon: Icon(Icons.remove_circle),
-                  iconSize: 50.0)
-            ],
-          )
-        ],
-      ),
     );
   }
 }

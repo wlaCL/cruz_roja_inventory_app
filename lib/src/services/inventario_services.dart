@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 class Inventario extends ChangeNotifier {
-  final _baseUrl = '192.168.1.9:3000';
+  final _baseUrl = '192.168.1.5:3000';
   final storage = FlutterSecureStorage();
   String? token;
   List<Products> productos = [];

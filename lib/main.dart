@@ -52,7 +52,8 @@ class _AppStateState extends State<AppState> {
         ChangeNotifierProvider(create: (_) => InventoryForm()),
         ChangeNotifierProvider(create: (_) => FinishReportProvider()),
         ChangeNotifierProvider(create: (_) => InventoryEsencialsForm()),
-        ChangeNotifierProvider(create: (_) => FormSearchPdf())
+        ChangeNotifierProvider(create: (_) => FormSearchPdf()),
+        ChangeNotifierProvider(create: (_) => DonwloadReport()),
       ],
       child: MyApp(),
     );

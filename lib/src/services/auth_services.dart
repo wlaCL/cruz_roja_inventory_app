@@ -7,7 +7,7 @@ import 'dart:convert';
 class AuthService extends ChangeNotifier {
   //ServerConect server = ServerConect();
   //late final String _baseUrl = server.ip;
-  final _baseUrl = '192.168.1.9:3000';
+  final _baseUrl = '192.168.1.5:3000';
   String? name;
   String? lastName;
   final storage = FlutterSecureStorage();

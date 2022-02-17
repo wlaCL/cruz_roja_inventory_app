@@ -7,7 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterProductServices extends ChangeNotifier {
-  final _baseUrl = '192.168.1.9:3000';
+  final _baseUrl = '192.168.1.5:3000';
   List<Ambulancia> ambulancias = [];
   List<Categoria> categorias = [];
   String categoryName = "";

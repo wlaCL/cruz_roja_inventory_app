@@ -1,3 +1,4 @@
+import 'package:app_sistema_invetnario/src/provider/provider.dart';
 import 'package:app_sistema_invetnario/src/services/services.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +36,8 @@ class ReportCard extends StatelessWidget {
             iconSize: 50.0,
             onPressed: () async {
               final reportpdf =
-                  Provider.of<ReportService>(context, listen: false);
-              await reportpdf.getReport(itemReport!.idReporte);
+                  Provider.of<DonwloadReport>(context, listen: false);
+              await reportpdf.openFile(url: itemReport!.idReporte);
             },
           ),
         ),

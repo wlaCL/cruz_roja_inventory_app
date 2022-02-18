@@ -1,5 +1,5 @@
 import 'package:app_sistema_invetnario/src/provider/provider.dart';
-import 'package:app_sistema_invetnario/src/screens/screens.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -64,7 +64,8 @@ class ProductosSearchDelegate extends SearchDelegate {
 
       return ListView.builder(
         itemCount: products.length,
-        itemBuilder: (_, int index) => ItemProduct(producto: products[index]),
+        itemBuilder: (_, int index) => Hero(
+            tag: 'car$index', child: ItemProduct(producto: products[index])),
       );
     });
   }

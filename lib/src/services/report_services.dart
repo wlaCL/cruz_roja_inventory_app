@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ReportService extends ChangeNotifier {
-  final _baseUrl = "192.168.1.5:3000";
+  final _baseUrl = "cruz-roja-inventory.herokuapp.com";
   final storage = const FlutterSecureStorage();
   String? token;
   String? reporte;
@@ -24,7 +24,7 @@ class ReportService extends ChangeNotifier {
 
   Future<String> isReporte(String fecha, String placa) async {
     final Map<String, dynamic> data = {'placa': placa, 'fecha': fecha};
-    final url = Uri.http(_baseUrl, '/api/reporte/exist');
+    final url = Uri.https(_baseUrl, '/api/reporte/exist');
 
     try {
       token = await storage.read(key: 'id_token');
@@ -59,7 +59,7 @@ class ReportService extends ChangeNotifier {
 
   Future<String> createReport(String placa, String fecha) async {
     final Map<String, dynamic> data = {'placa': placa, 'fecha': fecha};
-    final url = Uri.http(_baseUrl, '/api/reporte');
+    final url = Uri.https(_baseUrl, '/api/reporte');
 
     try {
       token = await storage.read(key: 'id_token');
@@ -89,7 +89,7 @@ class ReportService extends ChangeNotifier {
       String asistente, String conductor, String base, String novedades) async {
     try {
       token = await storage.read(key: 'id_token');
-      final url = Uri.http(_baseUrl, '/api/reporte');
+      final url = Uri.https(_baseUrl, '/api/reporte');
 
       final Map<String, dynamic> dataReport = {
         'id': reporte,
@@ -128,7 +128,7 @@ class ReportService extends ChangeNotifier {
     print(' $placa  $fecha');
     final queryParams = {"placa": placa, 'fecha': fecha};
     final url =
-        Uri.http(_baseUrl, '/api/reporte/search/data/report', queryParams);
+        Uri.https(_baseUrl, '/api/reporte/search/data/report', queryParams);
     try {
       token = await storage.read(key: 'id_token');
       final response = await http.get(url, headers: {
@@ -153,7 +153,7 @@ class ReportService extends ChangeNotifier {
   Future<int> getReport(String id) async {
     try {
       token = await storage.read(key: 'id_token');
-      final url = Uri.http(_baseUrl, '/api/reporte/search/pdf/$id');
+      final url = Uri.https(_baseUrl, '/api/reporte/search/pdf/$id');
       await http.get(url, headers: {'x-token': '$token'});
     } catch (error) {
       print(error);

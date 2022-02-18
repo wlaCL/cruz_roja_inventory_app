@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class SecurityService extends ChangeNotifier {
-  final String _baseUrl = '192.168.1.5:3000';
+  final String _baseUrl = ' https://cruz-roja-inventory.herokuapp.com';
   int? code;
   final storage = FlutterSecureStorage();
   Future<String> changePassword(password, newpassword) async {
@@ -14,7 +14,7 @@ class SecurityService extends ChangeNotifier {
       'contrasena': password,
       'nuevacontrasena': newpassword
     };
-    final url = Uri.http(_baseUrl, '/api/auth/change/pwuser');
+    final url = Uri.https(_baseUrl, '/api/auth/change/pwuser');
 
     try {
       final resp = await http.put(url, body: jsonEncode(service), headers: {

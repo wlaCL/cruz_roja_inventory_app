@@ -7,7 +7,7 @@ import 'dart:convert';
 class AuthService extends ChangeNotifier {
   //ServerConect server = ServerConect();
   //late final String _baseUrl = server.ip;
-  final _baseUrl = '192.168.1.5:3000';
+  final _baseUrl = 'cruz-roja-inventory.herokuapp.com';
   String? name;
   String? lastName;
   final storage = FlutterSecureStorage();
@@ -19,7 +19,7 @@ class AuthService extends ChangeNotifier {
       'password': password,
       'dispositivo': prefs.dispositivo
     };
-    final url = Uri.http(_baseUrl, '/api/auth/app');
+    final url = Uri.https(_baseUrl, '/api/auth/app');
     try {
       final resp = await http.post(url, body: jsonEncode(authData), headers: {
         "accept": "application/json",

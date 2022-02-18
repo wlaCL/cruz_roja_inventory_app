@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 class Inventario extends ChangeNotifier {
-  final _baseUrl = '192.168.1.5:3000';
+  final _baseUrl = 'cruz-roja-inventory.herokuapp.com';
   final storage = FlutterSecureStorage();
   String? token;
   List<Products> productos = [];
@@ -37,7 +37,7 @@ class Inventario extends ChangeNotifier {
     try {
       productos.clear();
       token = await storage.read(key: 'id_token');
-      final url = Uri.http(_baseUrl,
+      final url = Uri.https(_baseUrl,
           '/api/productos_ambulancias/search/$query/$_placa'); //arreglar conexion
 
       final response = await http.get(url, headers: {'x-token': '$token'});
@@ -77,7 +77,7 @@ class Inventario extends ChangeNotifier {
         'carga': carga
       };
 
-      final _url = Uri.http(_baseUrl, '/api/inventario');
+      final _url = Uri.https(_baseUrl, '/api/inventario');
       final response =
           await http.post(_url, body: jsonEncode(registro), headers: {
         "accept": "application/json",
@@ -100,7 +100,7 @@ class Inventario extends ChangeNotifier {
     productos.clear();
     try {
       final url =
-          Uri.http(_baseUrl, '/api/productos_ambulancias/scan/$id/$placa');
+          Uri.https(_baseUrl, '/api/productos_ambulancias/scan/$id/$placa');
       token = await storage.read(key: 'id_token');
       final response = await http.get(url, headers: {'x-token': '$token'});
       final Map<String, dynamic> responseDecode = jsonDecode(response.body);
@@ -108,8 +108,6 @@ class Inventario extends ChangeNotifier {
       final searchResponse = InventarioResponse.fromJson(response.body);
 
       productos = searchResponse.data;
-      print("*****************************");
-      print(productos);
       if (response.statusCode == 422) {
         message = responseDecode["errors"][0]["msg"];
       }
@@ -118,9 +116,7 @@ class Inventario extends ChangeNotifier {
       } else {
         ok = false;
       }
-    } catch (error) {
-      print(error);
-    }
+    } catch (error) {}
     return productos;
   }
 }

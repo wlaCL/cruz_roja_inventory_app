@@ -14,6 +14,7 @@ class ReportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime fechaActual = itemReport!.fecha;
+    String? id;
     String fechaFinal = DateFormat('yyyy-MM-dd').format(fechaActual);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20.0),
@@ -35,9 +36,10 @@ class ReportCard extends StatelessWidget {
             ),
             iconSize: 50.0,
             onPressed: () async {
+              id = itemReport!.idReporte;
               final reportpdf =
                   Provider.of<DonwloadReport>(context, listen: false);
-              await reportpdf.openFile(url: itemReport!.idReporte);
+              await reportpdf.openFile(url: id!);
             },
           ),
         ),

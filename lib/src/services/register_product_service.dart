@@ -7,7 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterProductServices extends ChangeNotifier {
-  final _baseUrl = '192.168.1.5:3000';
+  final _baseUrl = 'cruz-roja-inventory.herokuapp.com';
   List<Ambulancia> ambulancias = [];
   List<Categoria> categorias = [];
   String categoryName = "";
@@ -30,7 +30,7 @@ class RegisterProductServices extends ChangeNotifier {
   }
 
   Future loadAmbulances() async {
-    final url = Uri.http(_baseUrl, '/api/ambulancias');
+    final url = Uri.https(_baseUrl, '/api/ambulancias');
     try {
       final resp = await http.get(url, headers: {'x-token': '$token'});
       final respuesta = respuestaAmbulanciaFromMap(resp.body);
@@ -40,8 +40,9 @@ class RegisterProductServices extends ChangeNotifier {
   }
 
   Future loadCategories() async {
-    final url = Uri.http(_baseUrl, '/api/categorias/busqueda');
+    final url = Uri.https(_baseUrl, '/api/categorias/busqueda');
     try {
+      print(token);
       final resp = await http.get(url, headers: {'x-token': '$token'});
       final respuesta = respuestaProductoFromMap(resp.body);
       categorias = respuesta.categorias;
@@ -66,7 +67,7 @@ class RegisterProductServices extends ChangeNotifier {
       'tipo': (tipo == "Insumo Médico") ? "Insumo Medico" : tipo
     };
 
-    final url = Uri.http(_baseUrl, '/api/productos/app');
+    final url = Uri.https(_baseUrl, '/api/productos/app');
 
     try {
       final resp = await http.post(url, body: jsonEncode(register), headers: {

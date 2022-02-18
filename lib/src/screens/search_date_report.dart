@@ -118,7 +118,7 @@ class SearchDateReport extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0)),
               onPressed: () async {
                 searchPdfReport.fecha = controllerDate.text;
-                if (searchPdfReport.fecha.length < 3) {
+                if (searchPdfReport.fecha.length < 10) {
                   NotificationService.showSnackBar(
                       "Selecciona una fecha válida");
                 }
@@ -153,6 +153,8 @@ class SearchDateReport extends StatelessWidget {
         initialDate: DateTime.now(),
         firstDate: DateTime(2015),
         lastDate: DateTime(2025));
-    controllerDate.text = picked.toString().substring(0, 10);
+    controllerDate.text = (picked.toString().length >= 10)
+        ? picked.toString().substring(0, 10)
+        : 'Sin fecha';
   }
 }

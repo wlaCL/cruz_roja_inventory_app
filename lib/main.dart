@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Cruz Roja Ambulance Inventory',
+        title: 'SiscBam',
         initialRoute: 'autentificated',
         scaffoldMessengerKey: NotificationService.messengerKey,
         home: HomeScreen(),

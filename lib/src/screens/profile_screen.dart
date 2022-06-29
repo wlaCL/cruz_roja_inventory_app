@@ -76,7 +76,7 @@ class _DataProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: ListTile(
-                title: Text('Dark Mode',
+                title: Text('Modo Oscuro',
                     style: TextStyle(
                       color: Colors.black,
                     )),

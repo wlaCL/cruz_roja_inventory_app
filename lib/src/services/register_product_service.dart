@@ -40,13 +40,15 @@ class RegisterProductServices extends ChangeNotifier {
   }
 
   Future loadCategories() async {
-    final url = Uri.https(_baseUrl, '/api/categorias/busqueda');
+    final queryParams = {"inicio": "0", 'fin': "1000"};
+    final url = Uri.https(_baseUrl, '/api/categorias/busqueda', queryParams);
     try {
       print(token);
       final resp = await http.get(url, headers: {'x-token': '$token'});
       final respuesta = respuestaProductoFromMap(resp.body);
       categorias = respuesta.categorias;
       categorias.forEach((categoria) {
+        print(categoria.nombre);
         if (categoria.nombre == "Varios") {
           categoryName = categoria.nombre;
           categoryID = categoria.idCategoria;

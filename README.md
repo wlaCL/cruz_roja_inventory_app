@@ -1,16 +1,27 @@
-# app_sistema_inventario
+# SiscBam
 
-A new Flutter project.
+Proyecto creado para la Cruz Roja Ecuatoriana de Santo Domingo para el manejo de su inventario con código QR.
 
-## Getting Started
+## Imagenes de la app
+*Login, Pantalla Principal, Cambio de contraseña*
+![pantallas principales](https://user-images.githubusercontent.com/86076086/177660630-1d1752f1-b3d1-494d-879a-5ffa70960dbe.png)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+*Creación de reporte, Búsqueda de reporte, Visualización de reporte*
+![pantallas reporte](https://user-images.githubusercontent.com/86076086/177661802-10ba4163-6fd3-4b29-8343-ee8fb150a312.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+*Registro de isumos médicos y equipos*
+
+
+
+
+![register_product](https://user-images.githubusercontent.com/86076086/177662111-a305f1e2-de60-4969-989f-8a26d283d291.png)
+
+
+
+
+
+
